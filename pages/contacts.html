@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Контакты</title>
+  <link rel="stylesheet" href="../style/styles.css" />
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <h1 class="header__title">Контакты</h1>
+      <p class="header__subtitle">Связь + форма</p>
+    </header>
+
+    <nav class="nav">
+      <ul class="nav__list">
+        <li class="nav__item"><a class="nav__link" href="../index.html">Главная</a></li>
+        <li class="nav__item"><a class="nav__link" href="news.html">Новости</a></li>
+        <li class="nav__item"><a class="nav__link" href="practices.html">Практики</a></li>
+        <li class="nav__item"><a class="nav__link" href="goods.html">Товары</a></li>
+        <li class="nav__item nav__item--active"><a class="nav__link" href="contacts.html">Контакты</a></li>
+      </ul>
+    </nav>
+
+    <main class="main">
+      <section class="card">
+        <h2 class="card__title">Мои контакты</h2>
+
+        <div class="stack">
+          <div class="mini-card">
+            <h3 class="mini-card__title">Почта</h3>
+            <p class="mini-card__text">dadaev.a.k@edu.mirea.ru</p>
+          </div>
+
+          <div class="mini-card">
+            <h3 class="mini-card__title">Адрес</h3>
+            <p class="mini-card__text">г. Норильск, ул. Кадырова, дом 67</p>
+          </div>
+
+          <button class="btn" id="openModalBtn" type="button">Связаться со мной</button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p class="footer__text">© 2025. Контакты.</p>
+    </footer>
+  </div>
+
+  <dialog class="modal" id="contactModal">
+    <div class="modal__header">
+      <h2 class="modal__title">Форма обратной связи</h2>
+    </div>
+
+    <div class="modal__body">
+      <form id="feedbackForm" method="dialog">
+        <label class="field">
+          <span class="field__label">Имя *</span>
+          <input class="field__input" type="text" name="name" required placeholder="Введите имя" />
+        </label>
+
+        <label class="field">
+          <span class="field__label">Телефон *</span>
+          <input class="field__input" type="tel" name="phone" required placeholder="+7 (XXX) XXX-XX-XX" />
+        </label>
+
+        <label class="field">
+          <span class="field__label">Email *</span>
+          <input class="field__input" type="email" name="email" required placeholder="example@mail.ru" />
+        </label>
+
+        <label class="field">
+          <span class="field__label">Категория *</span>
+          <select class="field__input" name="category" required>
+            <option value="">Выберите категорию</option>
+            <option value="technical">Техническая поддержка</option>
+            <option value="commercial">Коммерческое предложение</option>
+            <option value="cooperation">Сотрудничество</option>
+            <option value="other">Другое</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span class="field__label">Сообщение *</span>
+          <textarea class="field__input field__input--textarea" name="message" required placeholder="Напишите сообщение..."></textarea>
+        </label>
+
+        <div class="modal__actions">
+          <button class="btn btn--ghost" type="submit">Отмена</button>
+          <button class="btn btn--primary" type="button" id="sendBtn">Отправить</button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
+  <script>
+    const modal = document.getElementById('contactModal');
+    const openBtn = document.getElementById('openModalBtn');
+    const sendBtn = document.getElementById('sendBtn');
+    const form = document.getElementById('feedbackForm');
+
+    openBtn.addEventListener('click', () => modal.showModal());
+
+    sendBtn.addEventListener('click', () => {
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+      const fd = new FormData(form);
+      const data = Object.fromEntries(fd.entries());
+      console.log('Данные формы:', data);
+      alert('Отправлено! Смотри console.log');
+      modal.close();
+      form.reset();
+    });
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) modal.close();
+    });
+
+    form.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA') e.preventDefault();
+    });
+  </script>
+</body>
+</html>

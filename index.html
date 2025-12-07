@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Главная — Портфолио</title>
+  <link rel="stylesheet" href="style/styles.css" />
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <h1 class="header__title">Моё портфолио</h1>
+      <p class="header__subtitle">Учебный сайт (HTML/CSS/JS)</p>
+    </header>
+
+    <nav class="nav">
+      <ul class="nav__list">
+        <li class="nav__item nav__item--active"><a class="nav__link" href="index.html">Главная</a></li>
+        <li class="nav__item"><a class="nav__link" href="pages/news.html">Новости</a></li>
+        <li class="nav__item"><a class="nav__link" href="pages/practices.html">Практики</a></li>
+        <li class="nav__item"><a class="nav__link" href="pages/goods.html">Товары</a></li>
+        <li class="nav__item"><a class="nav__link" href="pages/contacts.html">Контакты</a></li>
+      </ul>
+    </nav>
+
+    <main class="main">
+      <section class="card profile">
+        <img class="profile__photo" src="images/photo.png" alt="Фото автора" />
+        <div class="profile__info">
+          <h2 class="profile__name">Багажник Зелебражник</h2>
+          <p class="profile__group">Группа: ЭФБО-09-24</p>
+          <p class="profile__text">
+            Это простой сайт-портфолио: несколько страниц, общий CSS и форма обратной связи.
+          </p>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 class="card__title">Обо мне</h2>
+        <p>Пара предложений о себе: [позже добавлю опыт, цели, интересы и т.д.]</p>
+      </section>
+
+      <section class="card">
+        <h2 class="card__title">Навыки</h2>
+        <div class="chips">
+          <span class="chip">HTML</span>
+          <span class="chip">CSS</span>
+          <span class="chip">JavaScript</span>
+          <span class="chip">GitHub</span>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 class="card__title">Опыт / проекты</h2>
+        <div class="grid">
+          <article class="mini-card">
+            <h3 class="mini-card__title">Проект 1</h3>
+            <p class="mini-card__text">Простой макет сайта, вводный проект</p>
+          </article>
+          <article class="mini-card">
+            <h3 class="mini-card__title">Проект 2</h3>
+            <p class="mini-card__text">Портфолио автора данного продукта</p>
+          </article>
+          <article class="mini-card">
+            <h3 class="mini-card__title">Проект 3</h3>
+            <p class="mini-card__text">[ещё в разработке]</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p class="footer__text">© 2025. Учебный сайт.</p>
+    </footer>
+  </div>
+</body>
+</html>
