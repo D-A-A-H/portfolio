@@ -224,3 +224,80 @@ body{
 @media (max-width: 700px){
   .profile{ flex-direction: column; text-align: center; }
 }
+
+.carousel{
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 12px;
+  align-items: center;
+}
+
+.carousel__viewport{
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.carousel__track{
+  display: flex;
+  transform: translateX(0%);
+  transition: transform 250ms ease;
+}
+
+.carousel__item{
+  flex: 0 0 100%;
+}
+
+/* чтобы карточка не растягивалась странно */
+.carousel .product{
+  box-shadow: var(--shadow);
+}
+
+.carousel__btn{
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  border: 0;
+  cursor: pointer;
+  font-weight: 900;
+  background: #e5e7eb;
+}
+
+.carousel__btn:hover{
+  filter: brightness(0.95);
+}
+
+.carousel__dots{
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.carousel__dot{
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  border: 0;
+  cursor: pointer;
+  background: #d1d5db;
+}
+
+.carousel__dot--active{
+  background: var(--accent);
+}
+
+@media (max-width: 700px){
+  .carousel{
+    grid-template-columns: 1fr;
+  }
+  .carousel__btn{
+    width: 100%;
+    height: 42px;
+  }
+}
+.carousel .product__img{
+  height: 580px;       
+  object-fit: contain;  
+  background: #f3f4f6;  
+}

@@ -6,6 +6,7 @@
   <title>Товары</title>
   <link rel="stylesheet" href="../style/styles.css" />
 </head>
+
 <body>
   <div class="page">
     <header class="header">
@@ -27,25 +28,40 @@
       <section class="card">
         <h2 class="card__title">Каталог</h2>
 
-        <div class="grid">
-          <article class="product">
-            <img class="product__img" src="../images/goods1.jpg" alt="Товар 1" />
-            <h3 class="product__name">Модальное окно и форма (JS)</h3>
-            <p class="product__price">Цена: 1000 ₽</p>
-          </article>
+<div class="carousel" id="servicesCarousel">
+  <button class="carousel__btn" type="button" data-dir="-1" aria-label="Предыдущий">←</button>
 
-          <article class="product">
-            <img class="product__img" src="../images/goods2.jpg" alt="Товар 2" />
-            <h3 class="product__name">Оформление и адаптивный CSS</h3>
-            <p class="product__price">Цена: 2000 ₽</p>
-          </article>
+  <div class="carousel__viewport">
+    <div class="carousel__track">
+      <article class="product carousel__item">
+        <img class="product__img" src="../images/goods1.jpg" alt="Модальное окно и форма (JS)" />
+        <h3 class="product__name">Модальное окно и форма (JS)</h3>
+        <p class="product__price">Цена: 1000 ₽</p>
+      </article>
 
-          <article class="product">
-            <img class="product__img" src="../images/goods3.jpg" alt="Товар 3" />
-            <h3 class="product__name">Вёрстка многостраничного сайта</h3>
-            <p class="product__price">Цена: 3000 ₽</p>
-          </article>
-        </div>
+      <article class="product carousel__item">
+        <img class="product__img" src="../images/goods2.jpg" alt="Оформление и адаптивный CSS" />
+        <h3 class="product__name">Оформление и адаптивный CSS</h3>
+        <p class="product__price">Цена: 2000 ₽</p>
+      </article>
+
+      <article class="product carousel__item">
+        <img class="product__img" src="../images/goods3.jpg" alt="Вёрстка многостраничного сайта" />
+        <h3 class="product__name">Вёрстка многостраничного сайта</h3>
+        <p class="product__price">Цена: 3000 ₽</p>
+      </article>
+    </div>
+  </div>
+
+  <button class="carousel__btn" type="button" data-dir="1" aria-label="Следующий">→</button>
+
+  <div class="carousel__dots" aria-label="Индикаторы">
+    <button class="carousel__dot" type="button" data-index="0" aria-label="Слайд 1"></button>
+    <button class="carousel__dot" type="button" data-index="1" aria-label="Слайд 2"></button>
+    <button class="carousel__dot" type="button" data-index="2" aria-label="Слайд 3"></button>
+  </div>
+</div>
+
       </section>
     </main>
 
@@ -53,5 +69,44 @@
       <p class="footer__text">© 2025. Товары.</p>
     </footer>
   </div>
+  <script>
+  (function () {
+    const root = document.getElementById('servicesCarousel');
+    if (!root) return;
+
+    const track = root.querySelector('.carousel__track');
+    const items = Array.from(root.querySelectorAll('.carousel__item'));
+    const dots = Array.from(root.querySelectorAll('.carousel__dot'));
+    const btns = Array.from(root.querySelectorAll('.carousel__btn'));
+
+    let index = 0;
+
+    function update() {
+      track.style.transform = `translateX(${-index * 100}%)`;
+      dots.forEach((d, i) => d.classList.toggle('carousel__dot--active', i === index));
+    }
+
+    function go(delta) {
+      index = (index + delta + items.length) % items.length;
+      update();
+    }
+
+    btns.forEach(btn => btn.addEventListener('click', () => go(Number(btn.dataset.dir))));
+
+    dots.forEach(dot => dot.addEventListener('click', () => {
+      index = Number(dot.dataset.index);
+      update();
+    }));
+
+    // стрелки на клавиатуре (приятный бонус)
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') go(-1);
+      if (e.key === 'ArrowRight') go(1);
+    });
+
+    update();
+  })();
+</script>
+
 </body>
 </html>
